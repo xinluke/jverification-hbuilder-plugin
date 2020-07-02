@@ -1,0 +1,20 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
+name: Build and Test app
+on:
+  push:
+    branches:
+      - jg
+jobs:
+  build:
+    runs-on: [macos-latest]
+    env:
+      XC_VERSION: ${{ '11.4' }}
+      XC_WORKSPACE: ${{ 'UniPlugin-JVerification-iOS/HBuilder-uniPluginDemo' }}
+      XC_SCHEME: ${{ 'MyApp' }}
+    steps:
+    - name: Select latest Xcode
+      run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app"
+    - uses: actions/checkout@v2
+    - name: Run Unit and UI Tests
+      run: /usr/bin/xcodebuild test -workspace "$XC_WORKSPACE" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 11'

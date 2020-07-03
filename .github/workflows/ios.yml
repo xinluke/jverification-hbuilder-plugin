@@ -16,6 +16,8 @@ jobs:
     - name: Select latest Xcode
       run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app"
     - uses: actions/checkout@v2
+    - name: Run Unit and UI Tests123
+      run: xcodebuild archive  -workspace ./UniPlugin-JVerification-iOS/HBuilder-uniPluginDemo/HBuilder-uniPlugin.xcodeproj/project.xcworkspace -scheme UniPluginJVerification
     - name: Run Unit and UI Tests
       run: cd ./UniPlugin-JVerification-iOS/HBuilder-uniPluginDemo && /usr/bin/xcodebuild test -project "HBuilder-uniPlugin.xcodeproj" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 11'
     - name: Run Unit and UI Tests

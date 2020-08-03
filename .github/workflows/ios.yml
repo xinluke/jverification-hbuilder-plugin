@@ -8,13 +8,13 @@ on:
 jobs:
   build:
     runs-on: [macos-latest]
-    env:
-      XC_VERSION: ${{ '11.4' }}
-      XC_WORKSPACE: ${{ 'UniPlugin-JVerification-iOS/HBuilder-uniPluginDemo' }}
-      XC_SCHEME: ${{ 'MyApp' }}
+#     env:
+#       XC_VERSION: ${{ '11.4' }}
+#       XC_WORKSPACE: ${{ 'UniPlugin-JVerification-iOS/HBuilder-uniPluginDemo' }}
+#       XC_SCHEME: ${{ 'MyApp' }}
     steps:
-    - name: Select latest Xcode
-      run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app"
+#     - name: Select latest Xcode
+#       run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app"
     - uses: actions/checkout@v2
     - name: Run Unit and UI Tests123
       run: cd ./UniPlugin-JVerification-iOS/HBuilder-uniPluginDemo/UniPluginJVerification && xcodebuild -scheme "UniPluginJVerification" ONLY_ACTIVE_ARCH=NO OTHER_CFLAGS="-fembed-bitcode" -configuration 'Release' -sdk iphoneos clean build TARGET_BUILD_DIR=./tmp
